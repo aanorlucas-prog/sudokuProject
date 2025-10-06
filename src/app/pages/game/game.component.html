@@ -1,48 +1,83 @@
 <div class="game-container">
-    <div class="min-h-[70vh] w-full px-4 flex items-start justify-center">
-      <div class="w-full max-w-2xl">
-        <div class="bg-white/80 backdrop-blur rounded-xl shadow-lg ring-1 ring-slate-200 p-6">
-          <div class="mb-5 text-center">
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 via-fuchsia-500 to-rose-500 bg-clip-text text-transparent">Sudoku</h1>
-            <p class="mt-1 text-slate-600">Complète la grille puis clique sur <span class="text-indigo-600 font-medium">Vérifier</span>.</p>
-          </div>
+  <div class="min-h-[70vh] w-full px-4 flex items-start justify-center">
+    <div class="w-full max-w-md">
+      <div
+        class="bg-white/80 backdrop-blur rounded-xl shadow-lg ring-1 ring-slate-200 p-6"
+      >
+        <div class="mb-5 text-center">
+          <h1
+            class="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 via-fuchsia-500 to-rose-500 bg-clip-text text-transparent"
+          >
+            Sudoku
+          </h1>
+          <p class="mt-1 text-slate-600">
+            Complète la grille puis clique sur
+            <span class="text-indigo-600 font-medium">Vérifier</span>.
+          </p>
+        </div>
 
-          <div class="overflow-hidden rounded-lg ring-1 ring-slate-200">
-            <table class="sudoku w-full bg-white">
-              <tbody>
-                <tr *ngFor="let r of rows; let ri = index">
-                  <td *ngFor="let c of cols; let ci = index" [class.incorrect]="incorrect()[ri][ci]">
-                    <ng-container *ngIf="isGiven(ri, ci); else editable">
-                      <div class="cell-given select-none text-teal-500 font-semibold text-xl">
-                        {{ grid()[ri][ci] }}
-                      </div>
-                    </ng-container>
-                    <ng-template #editable>
-                      <input
-                        class="cell-input text-xl font-semibold caret-slate-700 text-slate-800 focus:bg-indigo-50/60 focus:ring-2 focus:ring-indigo-500"
-                        [value]="grid()[ri][ci] === 0 ? '' : grid()[ri][ci]"
-                        maxlength="1"
-                        inputmode="numeric"
-                        (keydown)="onKeyDown($event)"
-                        (input)="onInput(ri, ci, $event)"
-                      />
-                    </ng-template>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <!-- ✅ TABLEAU SUDOKU -->
+        <div class="overflow-hidden rounded-lg ring-1 ring-slate-300">
+          <table
+            class="sudoku border-collapse mx-auto bg-white border border-slate-400"
+          >
+            <tbody>
+              <tr *ngFor="let r of rows; let ri = index">
+                <td
+                  *ngFor="let c of cols; let ci = index"
+                  [class.incorrect]="incorrect()[ri][ci]"
+                  class="cell border border-slate-300 w-10 h-10 text-center align-middle"
+                >
+                  <ng-container *ngIf="isGiven(ri, ci); else editable">
+                    <div
+                      class="cell-given select-none text-teal-500 font-semibold text-lg"
+                    >
+                      {{ grid()[ri][ci] }}
+                    </div>
+                  </ng-container>
+                  <ng-template #editable>
+                    <input
+                      class="cell-input w-full h-full text-center text-lg font-semibold text-slate-800 caret-slate-700 focus:bg-indigo-50/60 focus:ring-2 focus:ring-indigo-500"
+                      [value]="grid()[ri][ci] === 0 ? '' : grid()[ri][ci]"
+                      maxlength="1"
+                      inputmode="numeric"
+                      (keydown)="onKeyDown($event)"
+                      (input)="onInput(ri, ci, $event)"
+                    />
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-          <div class="controls mt-5 flex gap-3 justify-center">
-            <button mat-raised-button color="primary" class="!px-6 !py-2 !text-base !text-white !rounded-lg !bg-gradient-to-r !from-indigo-600 !via-fuchsia-500 !to-rose-500 hover:!brightness-95 focus:!ring-2 focus:!ring-offset-2 focus:!ring-fuchsia-400" (click)="verify()">Vérifier</button>
-            <button mat-raised-button class="!px-6 !py-2 !text-base !rounded-lg !bg-slate-800 !text-white hover:!bg-slate-700 focus:!ring-2 focus:!ring-offset-2 focus:!ring-slate-400" (click)="newPuzzle()">Nouvelle grille</button>
-          </div>
+        <!-- ✅ BOUTONS -->
+        <div class="controls mt-5 flex gap-3 justify-center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="!px-6 !py-2 !text-base !text-white !rounded-lg !bg-gradient-to-r !from-indigo-600 !via-fuchsia-500 !to-rose-500 hover:!brightness-95 focus:!ring-2 focus:!ring-offset-2 focus:!ring-fuchsia-400"
+            (click)="verify()"
+          >
+            Vérifier
+          </button>
+          <button
+            mat-raised-button
+            class="!px-6 !py-2 !text-base !rounded-lg !bg-slate-800 !text-white hover:!bg-slate-700 focus:!ring-2 focus:!ring-offset-2 focus:!ring-slate-400"
+            (click)="newPuzzle()"
+          >
+            Nouvelle grille
+          </button>
+        </div>
 
-          <div *ngIf="solved()" class="mt-4 rounded-lg bg-emerald-50 text-emerald-700 px-4 py-3 font-medium ring-1 ring-emerald-200">
-            Bravo ! Sudoku résolu
-          </div>
+        <!-- ✅ MESSAGE DE RÉUSSITE -->
+        <div
+          *ngIf="solved()"
+          class="mt-4 rounded-lg bg-emerald-50 text-emerald-700 px-4 py-3 font-medium ring-1 ring-emerald-200 text-center"
+        >
+          🎉 Bravo ! Sudoku résolu
         </div>
       </div>
     </div>
   </div>
-  
+</div>

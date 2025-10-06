@@ -1,1 +1,40 @@
+/* ✅ Taille des cellules du Sudoku */
+.sudoku td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #cbd5e1;
+    /* gris clair */
+    text-align: center;
+    vertical-align: middle;
+}
 
+/* ✅ Bordures plus épaisses pour les blocs 3x3 */
+.sudoku tr:nth-child(3n) td {
+    border-bottom: 3px solid #1e293b;
+    /* slate-800 */
+}
+
+.sudoku td:nth-child(3n) {
+    border-right: 3px solid #1e293b;
+}
+
+/* ✅ Bordures extérieures plus épaisses */
+.sudoku tr:first-child td {
+    border-top: 3px solid #1e293b;
+}
+
+.sudoku td:first-child {
+    border-left: 3px solid #1e293b;
+}
+
+/* ✅ Cellules données (indices de départ) */
+.cell-given {
+    color: #0d9488;
+    /* teal-600 */
+}
+
+/* ✅ Cellules incorrectes */
+.incorrect {
+    background-color: rgba(239, 68, 68, 0.2);
+    /* rouge clair */
+}
