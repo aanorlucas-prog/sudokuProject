@@ -1,6 +1,20 @@
-.home-container {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Keep file minimal: utility-first styles are in the HTML via Tailwind classes. */
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease infinite;
 }

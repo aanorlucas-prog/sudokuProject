@@ -1,5 +1,46 @@
-<div class="home-container">
-  <button mat-raised-button color="primary" [routerLink]="['/game']">
-    Nouvelle partie !
-  </button>
+<div class="relative min-h-screen overflow-hidden">
+  <!-- Animated background gradient -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-br from-fuchsia-500 via-indigo-500 to-cyan-400 animate-gradient"></div>
+
+  <!-- Soft glow blobs -->
+  <div class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-fuchsia-400/40 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-32 -right-24 h-80 w-80 rounded-full bg-cyan-300/40 blur-3xl"></div>
+
+  <div class="container mx-auto px-6 py-20 md:py-28 flex items-center justify-center">
+    <div class="max-w-3xl w-full text-center rounded-3xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/20 p-8 md:p-12">
+      <div class="inline-flex items-center gap-2 bg-white/20 text-white rounded-full px-4 py-1 text-sm font-medium mb-6">
+        <span class="h-2 w-2 rounded-full bg-lime-300 animate-pulse"></span>
+        Prêt à jouer ?
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-sm">
+        Sudoku
+      </h1>
+      <!-- <p class="mt-4 text-white/90 text-lg md:text-xl">
+        Lancez une nouvelle partie et profitez d'une interface élégante, lumineuse et agréable. Que vous soyez débutant ou expert, détendez-vous et amusez-vous !
+      </p> -->
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a [routerLink]="['/game']"
+           class="inline-flex items-center justify-center rounded-xl bg-white text-slate-900 hover:bg-slate-100 active:bg-slate-200 transition-colors shadow-lg shadow-slate-900/10 px-6 py-3 font-semibold">
+          Nouvelle partie
+        </a>
+      </div>
+
+      <!-- <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 text-left">
+        <div class="rounded-2xl border border-white/20 bg-white/10 p-5 text-white">
+          <div class="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-fuchsia-400 to-rose-400 text-white">★</div>
+          <h3 class="text-lg font-semibold">Design élégant</h3>
+          <p class="mt-1 text-white/90">Interface claire avec effets de verre et couleurs vibrantes.</p>
+        </div>
+        <div class="rounded-2xl border border-white/20 bg-white/10 p-5 text-white">
+          <div class="mb-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-cyan-400 to-indigo-400 text-white">⚡</div>
+          <h3 class="text-lg font-semibold">Rapide et réactif</h3>
+          <p class="mt-1 text-white/90">Naviguez instantanément et commencez une partie en un clic.</p>
+        </div>
+      </div> -->
+
+      <p class="mt-10 text-xs text-white/80">Conseil: appuyez sur « Nouvelle partie » pour commencer.</p>
+    </div>
+  </div>
 </div>
